@@ -3,11 +3,12 @@ from setuptools import setup, find_packages
 setup(
     name='tw2.jqplugins.chosen',
     version='0.1',
-    description='SelectFields enhanced with the Chosen javascript library',
+    description='ToscaWidgets 2 SelectFields enhanced with the Chosen javascript library.',
     long_description=open('README.md').read(),
     author='Moritz Schlarb',
     author_email='mail@moritz-schlarb.de',
     url='https://github.com/moschlar/tw2.jqplugins.chosen',
+    license='MIT',
     install_requires=[
         "tw2.core",
         "tw2.forms",
