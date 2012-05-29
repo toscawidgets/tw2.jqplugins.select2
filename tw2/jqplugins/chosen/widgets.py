@@ -18,6 +18,7 @@ chosen_css = twc.CSSLink(filename='static/chosen.css')
 
 
 class ChosenMixin(twc.Widget):
+    '''Mixin for Chosen SelectFields'''
     resources = [chosen_js, chosen_css]
 
     selector = twc.Variable("Escaped id.  jQuery selector.")
@@ -47,7 +48,7 @@ class ChosenMixin(twc.Widget):
 
 
 class ChosenSingleSelectField(ChosenMixin, twf.SingleSelectField):
-
+    '''SingleSelectField, enhanced with Chosen javascript'''
     def prepare(self):
         # If field is not required, this adds a button for deselection
         if not self.required:
@@ -56,4 +57,5 @@ class ChosenSingleSelectField(ChosenMixin, twf.SingleSelectField):
 
 
 class ChosenMultipleSelectField(ChosenMixin, twf.MultipleSelectField):
+    '''MultipleSelectField, enhanced with Chosen javascript'''
     pass
