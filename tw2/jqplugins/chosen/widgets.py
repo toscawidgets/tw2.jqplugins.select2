@@ -5,8 +5,8 @@ import tw2.jquery as twj
 
 chosen_js = twc.JSLink(
     filename='static/chosen.jquery.js',
-    resources=[twj.jquery_js]),
-chosen_css = twc.CSSLink(filename='static/chosen.css'),
+    resources=[twj.jquery_js])
+chosen_css = twc.CSSLink(filename='static/chosen.css')
 
 
 class Chosen(twf.MultipleSelectionField):
