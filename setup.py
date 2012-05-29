@@ -3,16 +3,15 @@ from setuptools import setup, find_packages
 setup(
     name='tw2.jqplugins.chosen',
     version='0.1',
-    description='',
-    author='',
-    author_email='',
-    url='',
+    description='SelectFields enhanced with the Chosen javascript library',
+    long_description=open('README.md').read(),
+    author='Moritz Schlarb',
+    author_email='mail@moritz-schlarb.de',
+    url='https://github.com/moschlar/tw2.jqplugins.chosen',
     install_requires=[
         "tw2.core",
         "tw2.forms",
         "tw2.jquery",
-        ## Add other requirements here
-        # "Genshi",
         ],
     packages=find_packages(exclude=['ez_setup', 'tests']),
     namespace_packages = ['tw2'],
