@@ -6,10 +6,19 @@ These samples will appear in the WidgetBrowser
 See http://toscawidgets.org/documentation/WidgetBrowser for more information
 """
 
-from widgets import Chosen
+from widgets import *
 
 
-class DemoChosen(Chosen):
-    # Provide default parameters, value, etc... here
-    # default = <some-default-value>
-    pass
+class DemoChosenSingleSelectField(ChosenSingleSelectField):
+    options = [('Group 1', ['Item 1', 'Item 2']),
+        ('Group 2', ['Item 3', 'Item 4', 'Item 5', 'Item 6'])]
+    value = 'Item 2'
+    attrs = dict(style='width: 200px')
+
+
+class DemoChosenMultipleSelectField(ChosenMultipleSelectField):
+    options = [('Group 1', ['Item 1', 'Item 2']),
+        ('Group 2', ['Item 3', 'Item 4', 'Item 5', 'Item 6'])]
+    #value = ['Item 2', 'Item 5']
+    placeholder = 'Select an item, you won\'t regret it'
+    attrs = dict(style='width: 400px')
