@@ -13,7 +13,8 @@ __all__ = [
 chosen_img = twc.Link(filename='static/chosen-sprite.png')
 chosen_js = twc.JSLink(
     filename='static/chosen.jquery.js',
-    resources=[twj.jquery_js])
+    resources=[twj.jquery_js],
+    location='headbottom')
 chosen_css = twc.CSSLink(filename='static/chosen.css')
 
 
