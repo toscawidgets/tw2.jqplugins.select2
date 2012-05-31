@@ -10,12 +10,17 @@ __all__ = [
     'ChosenMultipleSelectField']
 
 
-chosen_img = twc.Link(filename='static/chosen-sprite.png')
+chosen_img = twc.Link(
+    modname=__name__,
+    filename='static/chosen-sprite.png')
 chosen_js = twc.JSLink(
+    modname=__name__,
     filename='static/chosen.jquery.js',
     resources=[twj.jquery_js],
     location='headbottom')
-chosen_css = twc.CSSLink(filename='static/chosen.css')
+chosen_css = twc.CSSLink(
+    modname=__name__,
+    filename='static/chosen.css')
 
 
 class ChosenMixin(twc.Widget):
