@@ -1,10 +1,33 @@
 from tw2.core.testbase import WidgetTest
-from tw2.jqplugins.chosen import *
+from tw2.jqplugins.chosen.widgets import (
+    ChosenSingleSelectField,
+    ChosenMultipleSelectField,
+)
 
-class ChosenMixin(WidgetTest):
+
+class TestChosenSingleSelectField(WidgetTest):
+    engines = ['mako', 'genshi']
     # place your widget at the TestWidget attribute
-    widget = ChosenMixin
-    # Initialization args. go here 
-    attrs = {'id':'chosen-test'}
+    widget = ChosenSingleSelectField
+    # Initialization args. go here
+    attrs = {'id': 'chosen-test', 'options': ['Red', 'Blue']}
     params = {}
-    expected = """<div id="chosen-test"></div>"""
+    expected = """
+    <select id="chosen-test" name="chosen-test">
+            <option></option><option value="Red">Red</option><option
+            value="Blue">Blue</option>
+            </select>"""
+
+
+class TestChosenMultipleSelectField(WidgetTest):
+    engines = ['mako', 'genshi']
+    # place your widget at the TestWidget attribute
+    widget = ChosenMultipleSelectField
+    # Initialization args. go here
+    attrs = {'id': 'chosen-test', 'options': ['Red', 'Blue']}
+    params = {}
+    expected = """
+    <select multiple="multiple" id="chosen-test" name="chosen-test">
+            <option value="Red">Red</option><option
+            value="Blue">Blue</option>
+            </select>"""

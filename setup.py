@@ -1,5 +1,12 @@
 from setuptools import setup, find_packages
 
+# Odd hack to get tests running smoothly on py2.7
+try:
+    import multiprocessing
+    import logging
+except ImportError, e:
+    pass
+
 setup(
     name='tw2.jqplugins.chosen',
     version='0.1',
@@ -18,6 +25,13 @@ setup(
     namespace_packages = ['tw2'],
     zip_safe=False,
     include_package_data=True,
+    tests_require = [
+        'nose',
+        'BeautifulSoup',
+        'FormEncode',
+        'WebTest',
+        'strainer',
+    ],
     test_suite = 'nose.collector',
     entry_points="""
         [tw2.widgets]
