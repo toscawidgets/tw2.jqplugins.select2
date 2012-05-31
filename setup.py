@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 try:
     import multiprocessing
     import logging
-except ImportError, e:
+except:
     pass
 
 setup(
@@ -31,6 +31,9 @@ setup(
         'FormEncode',
         'WebTest',
         'strainer',
+
+        'mako',
+        'genshi',
     ],
     test_suite = 'nose.collector',
     entry_points="""
