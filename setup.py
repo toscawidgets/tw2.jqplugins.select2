@@ -14,7 +14,7 @@ setup(
     long_description=open('README.md').read(),
     author='Moritz Schlarb',
     author_email='mail@moritz-schlarb.de',
-    url='https://github.com/moschlar/tw2.jqplugins.chosen',
+    url='https://github.com/toscawidgets/tw2.jqplugins.chosen',
     license='MIT',
     install_requires=[
         "tw2.core",
