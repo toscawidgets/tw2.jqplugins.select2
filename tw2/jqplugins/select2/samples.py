@@ -9,14 +9,14 @@ See http://toscawidgets.org/documentation/WidgetBrowser for more information
 from widgets import *
 
 
-class DemoChosenSingleSelectField(ChosenSingleSelectField):
+class DemoSelect2SingleSelectField(Select2SingleSelectField):
     options = [('Group 1', ['Item 1', 'Item 2']),
         ('Group 2', ['Item 3', 'Item 4', 'Item 5', 'Item 6'])]
     value = 'Item 2'
     attrs = dict(style='width: 200px')
 
 
-class DemoChosenMultipleSelectField(ChosenMultipleSelectField):
+class DemoSelect2MultipleSelectField(Select2MultipleSelectField):
     options = [('Group 1', ['Item 1', 'Item 2']),
         ('Group 2', ['Item 3', 'Item 4', 'Item 5', 'Item 6'])]
     #value = ['Item 2', 'Item 5']

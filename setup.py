@@ -8,13 +8,13 @@ except:
     pass
 
 setup(
-    name='tw2.jqplugins.chosen',
+    name='tw2.jqplugins.select2',
     version='0.1',
-    description='ToscaWidgets 2 SelectFields enhanced with the Chosen javascript library.',
+    description='ToscaWidgets 2 SelectFields enhanced with the select2 javascript library.',
     long_description=open('README.md').read(),
-    author='Moritz Schlarb',
-    author_email='mail@moritz-schlarb.de',
-    url='https://github.com/toscawidgets/tw2.jqplugins.chosen',
+    author='Ralph Bean',
+    author_email='rbean@redhat.com',
+    url='https://github.com/toscawidgets/tw2.jqplugins.select2',
     license='MIT',
     install_requires=[
         "tw2.core",
@@ -39,7 +39,7 @@ setup(
     entry_points="""
         [tw2.widgets]
         # Register your widgets so they can be listed in the WidgetBrowser
-        widgets = tw2.jqplugins.chosen
+        widgets = tw2.jqplugins.select2
     """,
     keywords = [
         'toscawidgets.widgets',

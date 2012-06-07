@@ -1,9 +1,9 @@
-.. tw2.jqplugins.chosen documentation master file.
+.. tw2.jqplugins.select2 documentation master file.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to tw2.jqplugins.chosen documentation!
-=========================================================
+Welcome to tw2.jqplugins.select2 documentation!
+===============================================
 
 Contents
 --------
@@ -12,11 +12,11 @@ Contents
    :maxdepth: 2
 
 
-:class:`tw2.jqplugins.chosen.Chosen`
-----------------------------------------------------------
+:class:`tw2.jqplugins.select2.Select2`
+-------------------------------------
 
-.. autoclass:: tw2.jqplugins.chosen.Chosen
-.. widgetbrowser:: tw2.jqplugins.chosen.Chosen
+.. autoclass:: tw2.jqplugins.select2.Select2
+.. widgetbrowser:: tw2.jqplugins.select2.Select2
 
 .. note::
     See http://toscawidgets.org/documentation/WidgetBrowser to learn how to

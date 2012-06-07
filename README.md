@@ -1,16 +1,9 @@
-tw2.jqplugins.chosen
-====================
+tw2.jqplugins.select2
+=====================
 
-Chosen is a JavaScript plugin that makes long,
-unwieldy select boxes much more user-friendly.
+Select2 is a jQuery based replacement for select boxes. It supports searching,
+remote data sets, and infinite scrolling of results. 
 
-For more information about Chosen, see the harvest website:
-http://harvesthq.github.com/chosen/ or the Github repository
-for chosen: https://github.com/harvesthq/chosen
+For more information about select2, see https://github.com/ivaynberg/select2
 
-Chosen is licensed under the MIT license and so is this
-ToscaWidgets2 library.
-
-The bundled version of Chosen in this project is
-harvesthq/chosen@dc024d784ac1c1971fc968d519ed4ef3d9915f1c
-
+Select2 is licensed under the apache-2 license and so is this TW2 library.
