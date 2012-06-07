@@ -33,7 +33,7 @@ class DemoSelect2AjaxSingleSelectField(Select2AjaxSingleSelectField):
                     return {
                         q: term, // search term
                         page_limit: 10,
-                        apikey: "ju6z9mjyajq2djue3gbvv26t"
+                        apikey: "t9vrcwd64b6hvfct3xvad7xz"
                     };
                 }
                 """),
