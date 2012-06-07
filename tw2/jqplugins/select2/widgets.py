@@ -9,6 +9,7 @@ __all__ = [
     'select2_css',
     'Select2SingleSelectField',
     'Select2MultipleSelectField',
+    'Select2AjaxSingleSelectField',
 ]
 
 
@@ -70,3 +71,10 @@ class Select2SingleSelectField(Select2Mixin, twf.SingleSelectField):
 class Select2MultipleSelectField(Select2Mixin, twf.MultipleSelectField):
     '''MultipleSelectField, enhanced with Select2 javascript'''
     pass
+
+
+class Select2AjaxSingleSelectField(Select2SingleSelectField):
+    ''' SingleSelectField that can get its values via ajax. '''
+    template = "tw2.forms.templates.input_field"
+    css_class = "big_drop"
+    type = "hidden"
