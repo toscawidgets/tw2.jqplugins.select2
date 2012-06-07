@@ -57,20 +57,16 @@ class DemoSelect2AjaxSingleSelectField(Select2AjaxSingleSelectField):
             """
             function (movie) {
                 var markup = "<table class='movie-result'><tr>";
-                if (movie.posters !== undefined && movie.posters.thumbnail !==
-                    undefined) {
-                                    markup += "<td class='movie-image'><img
-                        src='" + movie.posters.thumbnail + "'/></td>";
-                                }
+                if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
+                    markup += "<td class='movie-image'><img src='" + movie.posters.thumbnail + "'/></td>";
+                }
                 markup += "<td class='movie-info'><div class='movie-title'>" + movie.title + "</div>";
                 if (movie.critics_consensus !== undefined) {
-                                markup += "<div class='movie-synopsis'>" +
-                    movie.critics_consensus + "</div>";
-                            }
+                    markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
+                }
                 else if (movie.synopsis !== undefined) {
-                                markup += "<div class='movie-synopsis'>" +
-                    movie.synopsis + "</div>";
-                            }
+                    markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
+                }
                 markup += "</td></tr></table>"
                 return markup;
             }
