@@ -56,26 +56,29 @@ class Select2Mixin(twc.Widget):
         if self.no_results_text:
             self.opts['no_results_text'] = self.no_results_text
 
-        values=[]
-        for row in self.value:
-            temp_dict={}
-            if hasattr(self,"fields"):
-                fields = [a.key for a in self.fields]
-            elif hasattr(row,"__table__"):
-                fields = row.__table__.columns.keys()
-            else:
-                fields = row.keys()
+        self.add_call(twj.jQuery(self.selector).select2(self.opts))        
 
-            if hasattr(row,"__table__"):
-                for field in fields:
-                    temp_dict[field]=str(getattr(row,field))
-            else:
-                for field in fields:
-                    temp_dict[field]=str(row[field])
+        if hasattr(self,"value"):
+            if self.value != None:
+                values=[]
+                for row in self.value:
+                    temp_dict={}
+                    if hasattr(self,"fields"):
+                        fields = [a.key for a in self.fields]
+                    elif hasattr(row,"__table__"):
+                        fields = row.__table__.columns.keys()
+                    else:
+                        fields = row.keys()
 
-            values.append(temp_dict)
+                    if hasattr(row,"__table__"):
+                        for field in fields:
+                            temp_dict[field]=str(getattr(row,field))
+                    else:
+                        for field in fields:
+                            temp_dict[field]=str(row[field])
 
-        self.add_call(twj.jQuery(self.selector).select2(self.opts))
+                values.append(temp_dict)
+                self.add_call(twj.jQuery(self.selector).select2("val",values))
 
 
 class Select2SingleSelectField(Select2Mixin, twf.SingleSelectField):
