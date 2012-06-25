@@ -77,7 +77,7 @@ class Select2Mixin(twc.Widget):
                         for field in fields:
                             temp_dict[field]=str(row[field])
 
-                values.append(temp_dict)
+                    values.append(temp_dict)
                 self.add_call(twj.jQuery(self.selector).select2("val",values))
 
 
