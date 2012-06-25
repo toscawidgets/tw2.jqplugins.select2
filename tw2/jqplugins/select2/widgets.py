@@ -56,6 +56,20 @@ class Select2Mixin(twc.Widget):
         if self.no_results_text:
             self.opts['no_results_text'] = self.no_results_text
 
+        values=[]
+        for row in self.value:
+            temp_dict={}
+            if hasattr(self,"fields"):
+                fields = [a.key for a in self.fields]
+            elif hasattr(row,"__table__"):
+                for field in row.__table__.columns.keys():
+                    temp_dict[field]=str(getattr(row,field))
+            else:
+                for field in row.keys:
+                    temp_dict[field]=str(row[field])
+
+            values.append(temp_dict)
+
         self.add_call(twj.jQuery(self.selector).select2(self.opts))
 
 
