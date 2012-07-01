@@ -83,6 +83,9 @@ class Select2Mixin(twc.Widget):
 
                     values.append(temp_dict)
 
+                if "multiple" in self.opts:
+                    if self.opts['multiple']==False and len(values)>0:
+                        values=values[0]
                 self.add_call(twj.jQuery(self.selector).select2("val",values))
 
 
