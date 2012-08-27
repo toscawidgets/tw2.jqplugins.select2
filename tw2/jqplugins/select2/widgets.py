@@ -60,29 +60,32 @@ class Select2Mixin(twc.Widget):
 
         if hasattr(self,"value"):
             if self.value != None:
-                if isinstance(self.value,list):
-                    values=[]
-                    for row in self.value:
-                        temp_dict={}
-                        if hasattr(self,"fields"):
-                            fields = [a.key for a in self.fields]
-                        elif hasattr(row,"__table__"):
-                            fields = row.__table__.columns.keys()
-                        else:
-                            fields = row.keys()
+                values=[]
+                if isinstance(self.value,str):
+                    values=[dict(id=self.value)]
+                if not isinstance(self.value,list):
+                    self.value=[self.value]
+                for row in self.value:
+                    temp_dict={}
+                    if hasattr(self,"fields"):
+                        fields = [a.key for a in self.fields]
+                    elif hasattr(row,"__table__"):
+                        fields = row.__table__.columns.keys()
+                    else:
+                        fields = row.keys()
 
-                        if hasattr(row,"__table__"):
-                            for field in fields:
-                                temp_dict[field]=str(getattr(row,field))
-                        else:
-                            for field in fields:
-                                temp_dict[field]=str(row[field])
+                    if hasattr(row,"__table__"):
+                        for field in fields:
+                            temp_dict[field]=str(getattr(row,field))
+                    else:
+                        for field in fields:
+                            temp_dict[field]=str(row[field])
 
-                        values.append(temp_dict)
-                elif isinstance(self.value,str):
-                    values=self.value
-                else:
-                    values=""
+                    values.append(temp_dict)
+
+                if "multiple" in self.opts:
+                    if self.opts['multiple']==False and len(values)>0:
+                        values=values[0]
                 self.add_call(twj.jQuery(self.selector).select2("val",values))
 
 
