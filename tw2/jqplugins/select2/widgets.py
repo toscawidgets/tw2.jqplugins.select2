@@ -63,7 +63,7 @@ class Select2Mixin(twc.Widget):
                 values = []
 
                 if isinstance(self.value, str):
-                    values = [dict(id=self.value)]
+                    self.value = [dict(id=self.value)]
 
                 if not isinstance(self.value, list):
                     self.value = [self.value]
