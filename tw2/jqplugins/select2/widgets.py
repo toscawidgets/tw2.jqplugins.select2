@@ -56,37 +56,41 @@ class Select2Mixin(twc.Widget):
         if self.no_results_text:
             self.opts['no_results_text'] = self.no_results_text
 
-        self.add_call(twj.jQuery(self.selector).select2(self.opts))        
+        self.add_call(twj.jQuery(self.selector).select2(self.opts))
 
-        if hasattr(self,"value"):
-            if self.value != None:
-                values=[]
-                if isinstance(self.value,str):
-                    values=[dict(id=self.value)]
-                if not isinstance(self.value,list):
-                    self.value=[self.value]
+        if hasattr(self, "value"):
+            if self.value is not None:
+                values = []
+
+                if isinstance(self.value, str):
+                    values = [dict(id=self.value)]
+
+                if not isinstance(self.value, list):
+                    self.value = [self.value]
+
                 for row in self.value:
-                    temp_dict={}
-                    if hasattr(self,"fields"):
+                    temp_dict = {}
+                    if hasattr(self, "fields"):
                         fields = [a.key for a in self.fields]
-                    elif hasattr(row,"__table__"):
+                    elif hasattr(row, "__table__"):
                         fields = row.__table__.columns.keys()
                     else:
                         fields = row.keys()
 
-                    if hasattr(row,"__table__"):
+                    if hasattr(row, "__table__"):
                         for field in fields:
-                            temp_dict[field]=str(getattr(row,field))
+                            temp_dict[field] = str(getattr(row, field))
                     else:
                         for field in fields:
-                            temp_dict[field]=str(row[field])
+                            temp_dict[field] = str(row[field])
 
                     values.append(temp_dict)
 
                 if "multiple" in self.opts:
-                    if self.opts['multiple']==False and len(values)>0:
-                        values=values[0]
-                self.add_call(twj.jQuery(self.selector).select2("val",values))
+                    if self.opts['multiple'] is False and len(values) > 0:
+                        values = values[0]
+
+                self.add_call(twj.jQuery(self.selector).select2("val", values))
 
 
 class Select2SingleSelectField(Select2Mixin, twf.SingleSelectField):
