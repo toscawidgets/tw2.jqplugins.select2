@@ -62,7 +62,7 @@ class Select2Mixin(twc.Widget):
             if self.value is not None:
                 values = []
 
-                if isinstance(self.value, str):
+                if isinstance(self.value, basestring):
                     self.value = [dict(id=self.value)]
 
                 if not isinstance(self.value, list):
@@ -79,10 +79,10 @@ class Select2Mixin(twc.Widget):
 
                     if hasattr(row, "__table__"):
                         for field in fields:
-                            temp_dict[field] = str(getattr(row, field))
+                            temp_dict[field] = unicode(getattr(row, field))
                     else:
                         for field in fields:
-                            temp_dict[field] = str(row[field])
+                            temp_dict[field] = unicode(row[field])
 
                     values.append(temp_dict)
 
