@@ -44,8 +44,57 @@ class Select2Mixin(twc.Widget):
     no_results_text = twc.Param(
         'Text shown when the search term returned no results',
         default='')
+    ondemand = twc.Param(
+        """If true no select or option elements are created but all is 
+           handled through a hidden input element.
+           You need this if you want load data on demand (through ajax).""",
+        default=False)
+
+
+    def options2data(self, options):
+        """Turn the options data into a list of 
+        dict(id=<idvalue>, text=<textvalue> as select2
+        expects them if set on initialization."""
+
+        data=[]
+        while options:
+            entry=options.pop(0)
+            if isinstance(entry, basestring):
+                data.append(dict(id=entry, text=entry))
+            elif isinstance(entry, tuple):
+                # if the 2nd value in the tuple is a list, then our 
+                # entry represents a group and we simply
+                # push the elements of the group into our todo list
+                if len(entry)>1:
+                    if isinstance(entry[1], list): 
+                        options[:0] = entry[1]
+                    else:
+                        data.append(dict(id=entry[0], text=entry[1]))
+        return data
 
     def prepare(self):
+	self.opts = self.opts.copy()
+
+        # if we are a subclass of MultipleSelectField
+        # we need to tell select2, we want multiple selection
+        multiple = issubclass(self.__class__, 
+                              twf.MultipleSelectField)
+	if self.ondemand:
+	    self.template = "tw2.forms.templates.input_field"
+	    self.css_class = "big_drop"
+	    self.type = "hidden"
+
+            # only tell select2 if its attached to an input element
+            self.opts["multiple"] = multiple
+
+	    # if we have something in self.options turn it into an 
+            # array of {id:, text:} dicts
+	    # but don't try it if there is a data entry in opt already
+	    if self.options and "data" not in self.opts:
+                data = self.options2data(self.options[:])
+		if data:
+		    self.opts["data"] = data
+		    
         super(Select2Mixin, self).prepare()
         # put code here to run just before the widget is displayed
         if 'id' in self.attrs:
@@ -63,11 +112,17 @@ class Select2Mixin(twc.Widget):
                 values = []
 
                 if isinstance(self.value, basestring):
-                    self.value = [dict(id=self.value)]
+                    self.value = [dict(id=self.value, text=self.value)]
 
                 if not isinstance(self.value, list):
                     self.value = [self.value]
-
+                else:
+                    # all plain text entries are turned into dicts
+                    def str2dict(elem):
+                        if isinstance(elem, basestring):
+                            return dict(id=elem, text=elem)
+                        return elem
+                    self.value = map(str2dict, self.value)
                 for row in self.value:
                     temp_dict = {}
                     if hasattr(self, "fields"):
@@ -86,11 +141,16 @@ class Select2Mixin(twc.Widget):
 
                     values.append(temp_dict)
 
-                if "multiple" in self.opts:
-                    if self.opts['multiple'] is False and len(values) > 0:
-                        values = values[0]
+                # if not attached to input element, we are
+                # dealing only with plain values
+                if not self.ondemand:
+                    values = [entry["id"] for entry in values 
+                              if entry.has_key("id")]
+                if not multiple and len(values) > 0:
+                    values = values[0]
 
-                self.add_call(twj.jQuery(self.selector).select2("val", values))
+                if values:
+                    self.add_call(twj.jQuery(self.selector).select2("val", values))
 
 
 class Select2SingleSelectField(Select2Mixin, twf.SingleSelectField):
@@ -109,6 +169,7 @@ class Select2MultipleSelectField(Select2Mixin, twf.MultipleSelectField):
 
 class Select2AjaxSingleSelectField(Select2SingleSelectField):
     ''' SingleSelectField that can get its values via ajax. '''
-    template = "tw2.forms.templates.input_field"
-    css_class = "big_drop"
-    type = "hidden"
+    #template = "tw2.forms.templates.input_field"
+    #css_class = "big_drop"
+    #type = "hidden"
+    ondemand=True
