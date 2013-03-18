@@ -15,7 +15,7 @@ __all__ = [
 
 select2_spinner_img = twc.Link(
     modname=__name__,
-    filename='static/spinner.gif')
+    filename='static/select2-spinner.gif')
 select2_sprite_img = twc.Link(
     modname=__name__,
     filename='static/select2.png')
